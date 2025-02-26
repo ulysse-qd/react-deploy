@@ -1,44 +1,37 @@
 function Table({ statistique }) {
-    return (<div>
-        <h2>Statistiques de base</h2>
-        <table className="table-stats">
+    const { hp, atk, def, spe_atk, spe_def, vit } = statistique
 
-            <tbody>
-                <tr>
-                    <td className="category">HP</td>
-                    <td className="valeur-category">{statistique.hp}</td>
-                    <td className="range-slide"><div className="range-slide-fill" style={{ width: `calc(100% * ${statistique.hp} / 255)` }}></div></td>
-                </tr>
-                <tr>
-                    <td className="category">Attaque</td>
-                    <td className="valeur-category">{statistique.atk}</td>
-                    <td className="range-slide"><div className="range-slide-fill" style={{ width: `calc(100% * ${statistique.atk} / 255)` }}></div></td>
-                </tr>
-                <tr>
-                    <td className="category">Défense</td>
-                    <td className="valeur-category">{statistique.def}</td>
-                    <td className="range-slide"><div className="range-slide-fill" style={{ width: `calc(100% * ${statistique.def} / 255)` }}></div></td>
-                </tr>
-                <tr>
-                    <td className="category">Attaque Spéciale</td>
-                    <td className="valeur-category">{statistique.spe_atk}</td>
-                    <td className="range-slide"><div className="range-slide-fill" style={{ width: `calc(100% * ${statistique.spe_atk} / 255)` }}></div></td>
-                </tr>
-                <tr>
-                    <td className="category">Défense Spéciale</td>
-                    <td className="valeur-category">{statistique.spe_def}</td>
-                    <td className="range-slide"><div className="range-slide-fill" style={{ width: `calc(100% * ${statistique.spe_def} / 255)` }} ></div></td>
-                </tr>
-                <tr>
-                    <td className="category">Vitesse</td>
-                    <td className="valeur-category">{statistique.vit}</td>
-                    <td className="range-slide"><div className="range-slide-fill" style={{ width: `calc(100% * ${statistique.vit} / 255)` }}></div></td>
-                </tr>
-            </tbody>
+    const stats = [
+        { name: 'HP', value: hp },
+        { name: 'Attaque', value: atk },
+        { name: 'Défense', value: def },
+        { name: 'Attaque Spéciale', value: spe_atk },
+        { name: 'Défense Spéciale', value: spe_def },
+        { name: 'Vitesse', value: vit },
+    ]
 
-        </table>
-    </div>
+    return (
+        <div>
+            <h2>Statistiques de base</h2>
+            <table className="table-stats">
+                <tbody>
+                    {stats.map((stat) => (
+                        <tr key={stat.name}>
+                            <td className="category">{stat.name}</td>
+                            <td className="valeur-category">{stat.value}</td>
+                            <td className="range-slide">
+                                <div
+                                    className="range-slide-fill"
+                                    style={{
+                                        width: `calc(100% * ${stat.value} / 255)`,
+                                    }}
+                                />
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     )
-
 }
 export default Table
